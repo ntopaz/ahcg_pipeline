@@ -1,6 +1,6 @@
 # ahcg_pipeline
+Forked by ntopaz
 Variant calling pipeline for genomic data analysis
--forked by ntopaz
 
 ## Requirements
 
@@ -26,6 +26,15 @@ gunzip NIST7035_TAAGGCGA_L001_R2_001.fastq.gz
 head -100000 NIST7035_TAAGGCGA_L001_R1_001.fastq > test_r1.fastq
 head -100000 NIST7035_TAAGGCGA_L001_R2_001.fastq > test_r2.fastq
 ```
+
+
+## Setup
+git remote setup-url origin https.github.com/(USERNAME)/(PROJECT).git
+Edited readme (this)
+git push -u origin 
+
+
+Setup paths for python script
 
 ## Help
 
