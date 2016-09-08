@@ -60,7 +60,7 @@ wget www.prism.gatech.edu/~sravishankar9/resources.tar.gz
 
 #Bowtie Index: 
 
-Build using bowtie2 with command: bowtie2-build -f /path/to/hg19.fa hg19
+bowtie2-build -f /path/to/hg19.fa hg19
 
 #Samtools Index:
 
@@ -79,6 +79,24 @@ Get first 100000 lines using head of each
 
 ```{sh}
 python3 ahcg_pipeline.py -t lib/Trimmomatic-0.36/trimmomatic-0.36.jar -b lib/bowtie2-2.2.9/bowtie2 -p lib/picard.jar -g lib/GenomeAnalysisTK.jar -i data/test_r1.fastq data/test_r2.fastq -w data/resources/genome/hg19 -d data/resources/dbsnp/dbsnp_138.hg19.vcf.gz -r data/resources/genome/hg19.fa -a lib/Trimmomatic-0.36/adapters/NexteraPE-PE.fa -o .
+```
+
+### 9/8/2016 - Working on BRCA1 Gene  ###
+```{sh}
+#Get annotation file for hg19
+wget http://vannberg.biology.gatech.edu/data/ahcg2016/reference_genome/hg19_refGene.txt
+
+#Grab gene of interest (BRCA1):
+grep BRCA1 hg19_refGene.txt
+
+#Use create_bed.py script to create bed from specified gene
+
+python create_bed.py hg19_refGene.txt > output.bed
+
+#Use bedtools getfasta to convert bed to fasta
+
+bedtools getfasta -s -fi ./resources/genome/hg19.fa -bed output.bed -fo output.fna
+
 ```
 
 
