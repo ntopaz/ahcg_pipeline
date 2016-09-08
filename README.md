@@ -34,7 +34,7 @@ git remote setup-url origin https.github.com/(USERNAME)/(PROJECT).git
 Edited .gitignore file to avoid adding unnecessary files to repository
 Edited readme (this)
 git push -u origin master 
-'''
+```
 
 
 ## Help
@@ -44,6 +44,8 @@ To access help use the following command:
 ```{sh}
 python3 ahcg_pipeline.py -h
 ```
+
+
 ## Pipeline Dependencies
 ```{sh}
 Python3 - version 3.4.1
