@@ -100,3 +100,17 @@ bedtools getfasta -s -fi ./resources/genome/hg19.fa -bed output.bed -fo output.f
 ```
 
 
+### Extracting reads mapping to BRCA1 from NA12878 HiSeq Exome dataset:
+```{sh}
+
+#Download the NA12878 Exome dataset:
+Found at: https://github.com/genome-in-a-bottle/giab_data_indexes/blob/master/NA12878/alignment.index.NA12878_HiSeq_Exome_Garvan_GRCh37_09252015
+
+#Use samtools to grab regions corresponding to bed BRCA1 bed:
+samtools view -L <bed file> -b -o < outout bam file > < input bam file >
+
+#Use bedtools to convert bam to fastq:
+bedtools bamtofastq -i <bam file> -fq < fastq r1> -fq2 < fastq r2>
+
+```
+
