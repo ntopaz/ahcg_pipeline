@@ -46,7 +46,7 @@ python3 ahcg_pipeline.py -h
 ```
 
 
-## Pipeline Dependencies
+## Pipeline Dependencies and Command
 ```{sh}
 Python3 - version 3.4.1
 Trimmomatic - version 0.36
@@ -106,6 +106,9 @@ bedtools getfasta -s -fi ./resources/genome/hg19.fa -bed output.bed -fo output.f
 #Download the NA12878 Exome dataset:
 Found at: https://github.com/genome-in-a-bottle/giab_data_indexes/blob/master/NA12878/alignment.index.NA12878_HiSeq_Exome_Garvan_GRCh37_09252015
 
+### Merge Bam files ###
+samtools merge merged.bam in1.bam in2.bam .....	
+
 #Use samtools to grab regions corresponding to bed BRCA1 bed:
 samtools view -L <bed file> -b -o < outout bam file > < input bam file >
 
@@ -113,4 +116,5 @@ samtools view -L <bed file> -b -o < outout bam file > < input bam file >
 bedtools bamtofastq -i <bam file> -fq < fastq r1> -fq2 < fastq r2>
 
 ```
+
 
