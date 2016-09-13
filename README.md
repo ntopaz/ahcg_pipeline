@@ -118,3 +118,32 @@ bedtools bamtofastq -i <bam file> -fq < fastq r1> -fq2 < fastq r2>
 ```
 
 
+### Running pipeline on BRCA1 reference - 9/13/2016
+```{sh}
+
+#Obtained the new reference:
+
+wget http://vannberg.biology.gatech.edu/data/brca.fa
+
+#Created new bowtie2 and samtools index with same command above
+
+#Ran pipeline command as shown below:
+
+python3 ahcg_pipeline.py -t lib/Trimmomatic-0.36/trimmomatic-0.36.jar -b lib/bowtie2-2.2.9/bowtie2 -p lib/picard.jar -g lib/GenomeAnalysisTK.jar -i data/brca_r1.fastq data/brca_r2.fastq -w data/resources/genome/brca -d data/resources/dbsnp/dbsnp_138.hg19.vcf.gz -r data/resources/genome/brca.fa -a lib/Trimmomatic-0.36/adapters/NexteraPE-PE.fa -o .
+ 
+#Obtained "gold standard" vcf for NA12878 from here:
+
+wget ftp://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/NA12878/analysis/Illumina_PlatinumGenomes_NA12877_NA12878_09162015/hg19/8.0.1/NA12878/NA12878.vcf.gz
+
+#Both vcfs were bgzipped:
+
+bgzip NA12878.vcf
+bgzip brca_variants.vcf
+
+#Both vcfs were tabix indexed:
+
+tabix -p vcf NA12878.vcf.gz
+tabix -p vcf brca_variants.vcf.gz
+
+#vcftools vcf-compare used to compare files:
+- Work in progress -
