@@ -144,6 +144,7 @@ bgzip brca_variants.vcf
 
 tabix -p vcf NA12878.vcf.gz
 tabix -p vcf brca_variants.vcf.gz
+```
 
 
 ### Obtaining known gene list for diseases - 9/20/2016
@@ -183,3 +184,4 @@ BRIP1
 RAD50
 RAD51C
 RAD51D
+```
