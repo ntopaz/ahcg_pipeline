@@ -145,5 +145,41 @@ bgzip brca_variants.vcf
 tabix -p vcf NA12878.vcf.gz
 tabix -p vcf brca_variants.vcf.gz
 
-#vcftools vcf-compare used to compare files:
-- Work in progress -
+
+### Obtaining known gene list for diseases - 9/20/2016
+```{sh}
+
+#Gene list for color genomics available on: 
+https://getcolor.com/learn/the-science
+
+#Comparable gene list for breast/ovarian cancer available on:
+http://www.otogenetics.com/forms/Breast_Cancer_gene_list.pdf
+
+Gene list for ovarian and breast cancer:
+
+BRIP1
+BRCA1
+BRCA2
+DIRAS3
+ERBB2
+CASP8
+TGFB1
+MLH1
+MSH2
+MSH6
+PMS2
+EPCAM
+TP53
+PTEN
+STK11
+CDH1
+PALB2
+CHEK2
+AR 
+ATM
+NBN
+BARD1
+BRIP1
+RAD50
+RAD51C
+RAD51D
