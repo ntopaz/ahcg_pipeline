@@ -157,31 +157,50 @@ https://getcolor.com/learn/the-science
 http://www.otogenetics.com/forms/Breast_Cancer_gene_list.pdf
 
 Gene list for ovarian and breast cancer:
+BRIP1	NM_032043
+BRCA1	NM_007294
+BRCA2	NM_000059
+DIRAS3	NM_004675
+ERBB2	NM_001005862
+CASP8	NM_001080124
+TGFB1	NM_000660
+MLH1	NM_000249
+MSH2	NM_000251
+MSH6	NM_000179
+PMS2	NM_000535
+EPCAM	NM_002354
+TP53	NM_000546
+PTEN	NM_000314
+STK11	NM_000455
+CDH1	NM_004360
+PALB2	NM_024675
+CHEK2	NM_001005735
+AR 	NM_000044
+ATM	NM_000051
+NBN	NM_002485
+BARD1	NM_000465
+BRIP1	NM_032043
+RAD50	NM_005732
+RAD51A	NM_001164269
+RAD51C	NM_058216
+RAD51D	NM_002878
 
-BRIP1
-BRCA1
-BRCA2
-DIRAS3
-ERBB2
-CASP8
-TGFB1
-MLH1
-MSH2
-MSH6
-PMS2
-EPCAM
-TP53
-PTEN
-STK11
-CDH1
-PALB2
-CHEK2
-AR 
-ATM
-NBN
-BARD1
-BRIP1
-RAD50
-RAD51C
-RAD51D
+
+#Used create_bed.py to create exome-specific bed:
+
+python create_bed.py > gene_list.bed
+
+*Python script replaces start and end of gene with start and end of CDS
+*Python script adds buffer of 500 (default) to start and end of CDS
+
+#Samtools and Bedtools to obtain depth of coverage per base from bed file
+
+samtools view -L data/gene_list.bed data/project.NIST_NIST7035_H7AP8ADXX_TAAGGCGA_1_NA12878.bwa.markDuplicates.bam -b > new.bam
+
+bedtools genomecov -ibam (bam) -g (genome file*)
+
+*Genome file consists of a tab delimited file in format: chr# length
+*Obtain from hg19.dict file
+
 ```
+
