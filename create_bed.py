@@ -33,8 +33,8 @@ target_list=['NM_032043',
 'NM_002878']
 
 #buffer to add/subtract to end/start of cds
-buffer = 500
-
+start_buffer = 200
+exon_buffer = 20
 coord_list = []
 init_start = 0
 current_start = 0
@@ -61,7 +61,7 @@ for target in target_list:
 			coord_1 = props[9].strip()
 			coord_2 = props[10].strip()
 			all_coords = coord_1 + coord_2
-	
+				
 	cds_s = int(cds_start)
 	cds_e = int(cds_end)
 	
@@ -75,14 +75,14 @@ for target in target_list:
 		if i == 2:	
 			current_end = coord
 			i = 1
-			text += chrom + "\t" + current_start + "\t" + current_end + "\n"
+			text += chrom + "\t" + str(int(current_start)-exon_buffer) + "\t" + str(int(current_end)+exon_buffer) + "\n"
 			continue
 	
 	#grab cds start and stop and replace start and end of gene coordinates with respective
 	for line in text.split("\n"):
 		if line.strip() != "":
-			start = str(int(line.split("\t")[1])-buffer)
-			stop = str(int(line.split("\t")[2])+buffer)
+			start = str(int(line.split("\t")[1])-start_buffer)
+			stop = str(int(line.split("\t")[2])+start_buffer)
 			chr = line.split("\t")[0]
 			if cds_s > int(start) and cds_s < int(stop):
 				revised_text += chr + "\t" + str(cds_s) + "\t" + stop + "\n"
