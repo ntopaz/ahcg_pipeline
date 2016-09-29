@@ -26,7 +26,6 @@ target_list=['NM_032043',
 'NM_000051',
 'NM_002485',
 'NM_000465',
-'NM_032043',
 'NM_005732',
 'NM_001164269',
 'NM_058216',
@@ -35,22 +34,20 @@ target_list=['NM_032043',
 #buffer to add/subtract to end/start of cds
 start_buffer = 200
 exon_buffer = 20
-coord_list = []
-init_start = 0
-current_start = 0
-current_end = 0
 text = ""
 revised_text = ""
-i = 1
-q = 1
 
 
 firstline = True
 with open(my_file) as f:
 	the_text = f.readlines()
-
+q=0
 #iterate through target list
 for target in target_list:
+	init_start = 0
+	current_start = 0
+	current_end = 0
+	i = 1
 	for line in the_text:
 		if target in line:
 			props = line.split('\t')
@@ -79,19 +76,18 @@ for target in target_list:
 			continue
 	
 	#grab cds start and stop and replace start and end of gene coordinates with respective
-	for line in text.split("\n"):
-		if line.strip() != "":
-			start = str(int(line.split("\t")[1])-start_buffer)
-			stop = str(int(line.split("\t")[2])+start_buffer)
-			chr = line.split("\t")[0]
-			if cds_s > int(start) and cds_s < int(stop):
-				revised_text += chr + "\t" + str(cds_s) + "\t" + stop + "\n"
-				continue
-			if cds_e > int(start) and cds_e < int(stop):
-				revised_text += chr + "\t" + start + "\t" + str(cds_e) + "\n"
-				break
-			else:
-				revised_text += chr + "\t" + start + "\t" + stop + "\n"
-		
-print revised_text
-	
+#	for line in text.split("\n"):
+#		if line.strip() != "":
+#			start = str(int(line.split("\t")[1])-start_buffer)
+#			stop = str(int(line.split("\t")[2])+start_buffer)
+#			chr = line.split("\t")[0]
+#			if cds_s > int(start) and cds_s < int(stop):
+#				revised_text += str(q)+"\t"+chr + "\t" + str(cds_s) + "\t" + stop + "\n"
+#				continue
+#			if cds_e > int(start) and cds_e < int(stop):
+#				revised_text += str(q)+"\t"+chr + "\t" + start + "\t" + str(cds_e) + "\n"
+#				break
+#			else:
+#				revised_text += str(q)+"\t"+ chr + "\t" + start + "\t" + stop + "\n"
+
+print text
