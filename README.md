@@ -195,12 +195,24 @@ python create_bed.py > gene_list.bed
 
 #Samtools and Bedtools to obtain depth of coverage per base from bed file
 
-samtools view -L data/gene_list.bed data/project.NIST_NIST7035_H7AP8ADXX_TAAGGCGA_1_NA12878.bwa.markDuplicates.bam -b > new.bam
+samtools view -L data/gene_list.bed BAMFILE -b > new.bam
 
-bedtools genomecov -ibam (bam) -g (genome file*)
+bedtools genomecov -ibam (bam) -bga > coverage_output.bed
 
-*Genome file consists of a tab delimited file in format: chr# length
-*Obtain from hg19.dict file
+bedtools intersect -loj -split -a brca1.bed -b coverage_output.bed > brca1_coverage.bed
+
+awk '{printf("%s\t%s\t\%s\t%s\t%s\n", $1,$2,$3,$4,$10,$6)}' brca1_coverage.bed > final_brca1.coverage.bed
 
 ```
 
+### Recalibrating VCF file obtained from NA12878 10/13/16
+```{sh}
+
+#Used vcftools to filter NA12878_variants.vcf file with the exons.bed file
+
+vcftools --vcf NA12878_variants.vcf --bed exons.bed --recode --out 10_13_16_filtered.vcf
+
+#Run GATK recalibration tool on vcf using command:
+
+
+```
