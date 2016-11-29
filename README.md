@@ -216,3 +216,13 @@ vcftools --vcf NA12878_variants.vcf --bed exons.bed --recode --out 10_13_16_filt
 
 
 ```
+### Comparing recalibrated VCF with BRCA1 bed 
+```{sh}
+#Used bedtools intersect to compare vcf and brca1 bed to detect variants
+bedtools intersect -a 10_13_16_filtered.vcf -b brca1_bed.bed 
+# Generates VCF, compare with csv of known BRCA1/2 variants
+Using script from Wilson Martin (https://github.com/redspot/ahcg_pipeline) 
+compare_clin_with_vcf.py
+```
+
+
