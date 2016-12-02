@@ -225,4 +225,13 @@ Using script from Wilson Martin (https://github.com/redspot/ahcg_pipeline)
 compare_clin_with_vcf.py
 ```
 
+### Working on Dilated Cardiomyopathy Genes
+```{sh}
+#Used bed file generator script with DCM nm numbers to generate dcm_exons.bed
+python create_bed.py hg19_gene_list.txt > dcm_gene_list.bed
+```
+### Master Script for Variant call to coverage calculation 
+```{sh}
+Available at master_script.sh
+```
 
